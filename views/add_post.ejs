@@ -1,0 +1,27 @@
+<h1>Add an article</h1>
+<a class="back" href="/home">Back</a>
+<form action="/add_post" method="post">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+  <p>Title of the article</p>
+  <input type="text" name="title" />
+  <p>Nationality</p>
+  <input type="text" name="nationality" />
+  <p>Content of the article</p>
+  <textarea
+    type="text"
+    class="form-control"
+    name="contents"
+    id="contents"
+  ></textarea>
+  <p>Add link to the main photo</p>
+  <input type="text" name="picture" />
+  <p>Add link to the portrait</p>
+  <input type="text" name="portrait" />
+  <select name="categry_id">
+    <option value="">Choose a category</option>
+    <option value="1">MotoGP</option>
+    <option value="2">Football</option>
+    <option value="3">Basketball</option>
+  </select>
+  <button type="submit">Save</button>
+</form>

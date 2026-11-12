@@ -1,0 +1,92 @@
+
+<% if (session.isLogged === true ) { %>
+  <p class="bienvenueUser">Welcome <%= session.user.firstName %> !</p>
+<% } %>
+<% if(session.isLogged === false) { %>
+<p class="bienvenue">Welcome !</p>
+<% } %>
+
+
+<div class="buttonHaut">
+
+  <a class="buttonBasPage" href="#bas">Go to the bottom of the page</a>
+</div>
+<h1 id="ancre" class="mainlyTitle">Welcome to my Moto Blog !</h1><br>
+<h3 class="mainlyTitle">Welcome to my blog, here is a small biography of all the best drivers in the Moto GP category !!!!</h3>
+<br>
+<figure>
+    <audio
+    controls="controls">
+        <source src="bruit-de-moto.mp3" type="audio/mp3" 
+        audio loop ="loop">
+        <code>audio</code> element.
+    </audio>
+</figure>
+
+<div id="carousel" class="carousel slide" data-bs-ride="carousel" data-interval="1000">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 3"></button>
+
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://images.caradisiac.com/images/1/1/9/4/171194/S0-motogp-aragon-j-3-rossi-c-est-difficile-de-rester-motive-564115.jpg" class="d-block w-100 " alt="moto" style="width: 100px">
+      </div>
+      <div class="carousel-item">
+        <img src="https://photos.motogp.com/2015/01/29/148885.big.jpg" class="d-block w-100 h-50" alt="moto">
+      </div>
+      <div class="carousel-item">
+        <img src="https://www.autohebdo.fr/app/uploads/2023/11/DPPI_11219057_023.jpg" class="d-block w-100 " alt="moto" style="width: 100px">
+      </div>
+      <div class="carousel-item">
+        <img src="https://www.lerepairedesmotards.com/img/actu/2025/competition/motogp-italie-course-sprint-marc-marquez_hd.jpg" class="d-block w-100 " alt="moto" style="width: 100px">
+      </div>
+      <div class="carousel-item">
+        <img src="https://photos.motogp.com/2015/01/29/161299.big.jpg" class="d-block w-100 " alt="moto" style="width: 100px">
+      </div>
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+<div class="posts">
+    <ul class="home-list">
+        <% for(let i=0; i < posts.length; i++) { %>
+        <li>
+          <div class="portrait">
+            <img class="portrait_pilote" src="<%= posts[i].portrait %>" alt="portrait"/>
+          </div>
+            <h2 class="title"><%= posts[i].title %></h2>
+<p class="para"><%= posts[i].contents.substring(0, 500) %>...</p>            
+<div class="container">
+                <a class="buttonDetails" href="/post/<%=posts[i].id%>">View the details of the article</a>
+              <% if(session.isLogged === true) {%>
+                <a class="buttonDelete" href="/delete_post/<%=posts[i].id%>">Delete the article</a>
+              <% } %>
+            </div>
+        </li>
+        <% } %>
+        
+    </ul>
+    
+</div>
+<div id="bas" class="buttonHaut">
+
+  <a class="buttonHautsPage" href="#ancre">Go to the top of the page</a>
+</div>
+<% if(session.isLogged === true) {%>
+<div class="buttonCreate">
+    <a class="buttonCreatePost" href="/add_post">Create an article</a>
+</div>
+<% } %>
+<script src="/autoPlayAudio.js"></script>

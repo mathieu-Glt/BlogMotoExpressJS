@@ -1,0 +1,38 @@
+<h1>Admin</h1>
+
+<a class="back" href="/add_post">Add an article</a>
+
+<table> 
+	<thead>
+			<th>Title</th>
+            <th>Article</th>
+			<th>Edit</th>
+			<th>Delete</th>
+	</thead>
+	<tbody>
+	    <% for(let i = 0; i < posts.length; i++) { %>
+			<tr>
+				<td>
+					<a class="back" href="/edit_post/:id"><%=posts[i].Title%></a>
+				</td>
+				<td><%=posts[i].Contents.substring(0, 30)%> ...</td>
+<td><a class="edit" href="/edit_post/<%= posts[i].id %>">Edit</a></td>
+<td><a class="remove" href="/delete_post/<%= posts[i].id %>">Delete</a></td>                
+			</tr>
+		<% } %>
+	</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/user.js"></script>

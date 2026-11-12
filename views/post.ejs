@@ -1,0 +1,69 @@
+<h1>Article</h1>
+<a class="back" href="/home">Back</a>
+<section class="article-detail">
+    <div class="post">
+        
+<% if (postId.Nationality && postId.Nationality.startsWith("I")) { %>
+    <div class="flagPost">
+        <img src="https://lesplusbeauxdrapeauxdumonde.com/wp-content/uploads/2016/07/italy-1460295_1280.jpg?w=620&h=395" alt="flag"/>
+    </div>
+<% } else if (postId.Nationality && postId.Nationality.startsWith("F")) { %>
+    <div class="flagPost">
+        <img src="https://media.cdnws.com/_i/4335/290/359/92/drapeau-france-2.png" alt="flag"/>
+    </div>
+<% } else if (postId.Nationality && postId.Nationality.startsWith("E")) { %>
+    <div class="flagPost">
+        <img src="https://www.shutterstock.com/image-photo/vibrant-spanish-flag-background-dynamic-600nw-2696393979.jpg" alt="flag"/>
+    </div>
+<% } %>%>
+                <h2 class="post-title"><%= postId.title %></h2>
+                <p class="post-para"><%= postId.contents %></p>
+                <div class="picturePost">
+                    <img src="<%= postId.picture %>" alt="moto<%= postId.title %>" />
+                </div>
+            
+
+    
+    <div class="editButton">
+        <% if(session.isLogged === true) {%>
+            <a class="editArticle" href="/edit_post/<%= postId.id %>">Edit the article</a>
+        <% } %>
+        
+        
+    </div>
+
+<section class="comment-article">
+  <ul>
+    <% for (let i = 0; i < comment.length; i++) { %>
+      <li>
+        <h3><%= comment[i].nickname %></h3>
+
+        <p><%= comment[i].contents %></p>
+
+        <p class="date-comment">
+          <%= new Date(comment[i].creationtimestamp).toLocaleDateString("fr-FR") %>
+        </p>
+      </li>
+    <% } %>
+  </ul>
+</section>
+
+
+    <div class="container">
+        <form action="/add_comment/<%=postId.id%>" method="post">
+            			<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+            <div class="form-group">
+                <label for="pseudo" class="form-label">Pseudo</label>
+                <input type="text" class="form-control" name="nickname" id="nickname">
+            </div>
+            <div class="form-group">
+                <label for="password" class="form-label">Comment</label>
+                <textarea type="password" class="form-control" name="contents" id="contents"></textarea>
+            </div>
+            <input type="submit">Submit</input>
+        </form>
+    </div>
+
+
+</section>    

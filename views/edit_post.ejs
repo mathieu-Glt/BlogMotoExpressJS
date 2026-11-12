@@ -1,0 +1,61 @@
+<h1>Edit an article</h1>
+<a class="back" href="/home">Back</a>
+
+<div class="container">
+  <form action="/edit_post/<%= post.id %>" method="post">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+    <div class="form-group">
+      <label for="Title" class="form-label">Title of the article</label>
+      <input
+        type="text"
+        class="form-control"
+        name="title"
+        id="title"
+        value="<%=post.title%>"
+      />
+    </div>
+    <div class="form-group">
+      <label for="Nationality" class="form-label">Nationality</label>
+      <input
+        type="text"
+        class="form-control"
+        name="nationality"
+        id="nationality"
+        value="<%=post.nationality%>"
+      />
+    </div>
+    <div class="form-group">
+      <label for="Contents" class="form-label">Content of the article</label>
+      <textarea type="text" class="form-control" name="contents" id="contents">
+<%=post.contents%></textarea
+      >
+    </div>
+    <div class="form-group">
+      <label for="Picture" class="form-label">Article Photo</label>
+      <input
+        type="text"
+        class="form-control"
+        name="picture"
+        id="picture"
+        value="<%=post.picture%>"
+      />
+    </div>
+    <div class="form-group">
+      <label for="Portrait" class="form-label">Portrait of the driver</label>
+      <input
+        type="text"
+        class="form-control"
+        name="portrait"
+        id="portrait"
+        value="<%=post.portrait%>"
+      />
+      <select name="categry_id">
+        <option value="">Choose a category</option>
+        <option value="1">MotoGP</option>
+        <option value="2">Football</option>
+        <option value="3">Basketball</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

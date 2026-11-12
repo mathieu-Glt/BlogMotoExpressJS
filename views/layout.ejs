@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- External style sheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/img/images.jpg" type="image/webp">
+    <title>Blog moto</title>
+</head>
+<body>
+<header class="blog-header">
+    <div class="logogp">
+        <img src="/img/Moto-GP.jpg">
+    </div>
+    <header class="blog-header">
+
+        <!-- Burger button -->
+<button class="burger-btn" id="burgerBtn">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<!-- Overlay sombre -->acx <
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- Side menu-->
+<nav class="side-nav" id="sideNav">
+  <button class="close-btn" id="closeBtn">✕</button>
+  <div class="navbar">
+    <img src="/img/motogp-logo.webp">
+    <a href="/home">Home</a>
+    <% if (session.isLogged === false) { %>
+      <a href="/register">Register</a>
+      <a href="/login">Login</a>
+    <% } else { %>
+      <a href="/logout">Logout</a>
+      <% if (session.user.role === "admin") { %>
+        <a href="/admin">Administration</a>
+      <% } %>
+    <% } %>
+  </div>
+</nav>
+        <div>
+  
+            <% if (session.isLogged === false) { %>
+            <h1 id="anchor"><a href="/home"> Le Blog </a></h1>
+            <% } else {%>
+            <h1><a href="/home"> Le Blog Moto GP de <%= session.user.firstName %></a></h1>
+            <% } %>
+            <nav>
+                <div class="navbar">
+                            <img src="/img/motogp-logo.webp">
+
+                                    <a href="/home">Home</a>
+               <!-- condition if the user is not logged in
+we show the register and login links
+                    
+                //if else the user is logged in
+                    we show the logout link
+                    
+                    //if he is an admin
+                    
+                        //we show the link to the admin page
+               -->
+               <% if (session.isLogged === false) { %>
+                    <a href="/register">Register</a>
+                    <a href="/login">Login</a>
+               <% } else {%>
+                    <a href="/logout">Logout</a>
+                    <% if (session.isLogged === true && session.user.role === "admin") { %>
+                        <a href="/admin"> Administration</a>
+                    <% } %>
+               <% } %>
+                </div>
+
+            </nav>
+        </div>
+    </header>
+</header>
+
+<main class="main-layout">
+        <%- include(template) -%>
+</main>
+
+<footer class="blog-footer">
+    <small class="small">The blog of the pretentious motorcyclists</small>
+    <img src="https://img.freepik.com/vecteurs-libre/logo-moto-gp_96853-362.jpg" width="60px"/>
+    <a href="#anchor">Go to the top of the page</a>
+</footer>
+<script src="burger.js"></script>
+</body>
+</html>
