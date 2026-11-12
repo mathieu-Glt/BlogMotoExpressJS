@@ -10,7 +10,7 @@ const xssClean = require("xss-clean");
 const csrf = require("csurf");
 
 const app = express();
-
+app.set("trust proxy", 1);
 // ==================================================
 // 1. CONFIGURATION DE LA SECURITE HTTP
 // ==================================================
